@@ -84,12 +84,12 @@ cd <DRUPAL ROOT DIRECTORY>
 ```
 You can run the script (as we do above) or just paste it's content on the command line.
 
-### Workflow directory
-Throw anything in PantheonSiteSync/workflow that helps you with your overall workflow. This is not part of the automation, just a placeholder for things you may use repeatedly in your workflow.
-
 ### remove_cmds.sh
 The file PantheonSiteSync/remove/remove_cmds.sh is not meant to be run. It is instead a reminder of all the things touched by the install script and you should use it as a guide to everything to check and modify if you wish to remove an install.
 
+### Workflow directory
+Throw anything in PantheonSiteSync/workflow that helps you with your overall workflow. This is not part of the automation, just a placeholder for things you may use repeatedly in your workflow.
+
 ## Credits
-Creator/Maintainer: Reg Proctor, r100@regproctor.com
-Maintainer: Michael Gilardi, mgilardi@asu.edu / mdgilardi@gmail.com
+* Creator/Maintainer: Reg Proctor, r100@regproctor.com
+* Maintainer: Michael Gilardi, mgilardi@asu.edu / mdgilardi@gmail.com
