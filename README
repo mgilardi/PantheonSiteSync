@@ -1,0 +1,118 @@
+TO DO
+=====
+    The timing works in terms of lapsed time but it's about 7 hours off for the
+    start and end time suggesting it's using UTC instead of local time, fix it.
+
+INITIALIZING
+============
+    If you wish to change your scripts' root directory folder name either:
+      a) Change this line in every file it occurs:
+            PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=automation
+      b) Add the line:
+            export PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=<YOUR SCRIPT ROOT FOLDER NAME>
+         to your's and the root user's .profile file.
+
+    You should make ./drupal/data/tokens_to_restore_db empty. Your usage will
+    populate it with your data.
+
+    ide dir - This is empty but if you wish to automate some of your ide's setup
+              add the code here and call it from the install.sh file.
+
+REQUIREMENTS
+============
+    rsync
+    -----
+        rsync must be version 3.1+. It is on brew.
+
+        You will need an ssh key for the root user for the rsync operation. 
+        You do this with:
+            sudo bash -i
+            mkdir .ssh
+            cd .ssh
+            ssh-keygen -t rsa -b 4096
+            Copy your new rsa.pub file to Pantheon
+
+    CUSTOMIZATION
+    -------------
+        Customize the files in the config dir. to your needs.
+
+    gsed 
+    ----
+        You need it, get it from brew.
+
+    tree
+    ----
+        You need it, get it from brew. Alternatively, replace it with the 
+        reporting of your liking.
+
+    mysql_config_editor
+    -------------------
+        If your mysql is older you might not have this, update mysql or alter 
+        the code to not need it.
+
+    apache
+    ------
+        This uses apache 2.4 from brew. If you have a different web server
+        write your own scripts for your web server and then include the script
+        in the install.sh file and of course exclude apache. This way we build 
+        up a library of web servers and people can just "plug in" the one they
+        want.
+
+        Even if you are using apache 2.4 from brew you will most probably have
+        different paths for location of things. To handle this change the paths
+        in: ./web-server/templates/* which you will want to match up with any
+        patch changes you make in ./config/system.sh
+
+    pv
+    --
+        You need it, get it from brew. Alternatively, replace it with the 
+        reporting of your liking.
+
+USAGE
+=====
+    ./install.sh
+    ------------
+        Put automation as a sibling folder to your other projects.
+        cd to it.
+        sudo in it.
+        run: ./install.sh <folder name for desired project>
+
+    ./drupal/drupal_setup.sh
+    ------------------------
+        Some components (eventually all hopefully) can be run independent of 
+        ./install.sh. Primarily these are the DB commands to set and restore user 1
+        in a drupal DB. You do this by running:
+            ./drupal/drupal_setup.sh -f <FUNCTION> <PROJECT-QUERY>
+            where:
+                FUNCTION is the name of the function to call in drupal_setup.sh.
+                These will almost certainly be on of:
+                        set_local_user_one_pass
+                    restore_local_user_one_pass
+                       set_remote_user_one_pass
+                   restore_remote_user_one_pass
+
+                PROJECT-QUERY is the first few letters of the project's folder name,
+                enough letters to determine which project is best but less will 
+                still work ...you'll just have to make a decision when prompted with 
+                options.
+
+    ./git-merge-from-upstream.sh
+    ----------------------------
+        This is not really part of the automation. It's really just a convenience
+        in case you are prone to forget the commands for merging upstream into 
+        your local git repo. Usage:
+            cd <DRUPAL ROOT DIRECTORY>
+            run the file or just paste it's content on the command line.
+
+workflow dir
+============
+    Throw in here anything that helps you with your work flow. This is not part 
+    of the automation, just a placeholder for things you may use repeatedly in
+    your work flow.
+
+remove_cmds.sh
+==============
+    The file ./remove/remove_cmds.sh is not meant to be run. It is instead a 
+    reminder of all the things touched by the install script and you should use
+    it as a guide to everything to check and modify if you wish to remove an 
+    install.   

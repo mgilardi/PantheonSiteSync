@@ -1,0 +1,21 @@
+#!/usr/bin/expect
+
+set l [lindex $argv 0];
+set u [lindex $argv 1];
+set p [lindex $argv 2];
+set h [lindex $argv 3];
+set w [lindex $argv 4];
+
+if {$l != ""} {set l "--login-path=$l"}
+if {$u != ""} {set u "-u $u"}
+if {$p != ""} {set p "-P $p"}
+if {$h != ""} {set h "-h $h"}
+ 
+set timeout 1
+spawn mysql_config_editor set $l $u $p $h -p
+expect {
+    -re {[: ]} {
+        send "$w\r";
+    }
+}
+interact

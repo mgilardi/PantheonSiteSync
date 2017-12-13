@@ -1,0 +1,9 @@
+#
+# Macros Vhost & VHost_SSL
+# p1 = domain
+# p2 = subpath
+# p3 = prefix for aliased subdomain. Allowed values: www | none
+# p4 = multi-site core domain path. Allowed values: the_url | none
+#
+
+define drupal_multisite_defined

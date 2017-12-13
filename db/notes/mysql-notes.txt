@@ -1,0 +1,10 @@
+To find the config file mysql is using:
+    ls -al $($(which mysqld) --verbose --help | grep -A 1 "Default options"|tail -n 1)
+
+To see much:
+    $(which mysqld) --verbose --help | less -N
+
+
+For Brew:
+    ls -al $(/usr/local/opt/mysql/bin/mysqld --verbose --help | grep -A 1 "Default options"|tail -n 1)
+    l=$(/usr/local/opt/mysql/bin/mysqld --verbose --help | grep -A 1 "Default options"|tail -n 1); echo "$l"; ls -al $l

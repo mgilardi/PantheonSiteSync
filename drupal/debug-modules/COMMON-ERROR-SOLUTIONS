@@ -1,0 +1,13 @@
+
+ERROR
+The website encountered an unexpected error. Please try again later.
+Error message
+PDOException: SQLSTATE[HY000] [2002] No such file or directory in lock_may_be_available() (line 167 of /.../includes/lock.inc).
+
+SOLUTION
+Test MySQL creds by trying to log into MySQL with them. E.g.: 
+   mysql -u hida_hi_dev -p'xxxxxxxxxxxxxx' -h localhost hida_hi_dev
+
+A common problem is missing out the host settings as in:
+  $databases['default']['default'] = array(
+      'host' => 'localhost',

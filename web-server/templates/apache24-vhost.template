@@ -1,0 +1,9 @@
+
+<VirtualHost *:80>
+    ServerAdmin <SERVER_ADMIN>
+    DocumentRoot "/usr/local/var/www/htdocs/<LOCAL_DOMAIN>"
+    ServerName      <LOCAL_DOMAIN>
+    ServerAlias www.<LOCAL_DOMAIN>
+    ErrorLog  "<APACHE_LOG_FILES>/<LOCAL_DOMAIN>/error_log"
+    CustomLog "<APACHE_LOG_FILES>/<LOCAL_DOMAIN>/access_log" common
+</VirtualHost>

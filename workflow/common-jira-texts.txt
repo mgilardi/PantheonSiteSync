@@ -1,0 +1,14 @@
+Test ready for Q.A.: 
+    Updated from Dev.
+    Merged data from Live.
+    Did a comparative random sampling of pages between Live and Test.
+    Looked for and if found checked maps and directory listings.
+
+Live Updated
+    Backed up live
+    Pushed test to live.
+    Checked a couple of random pages to make sure they looked the same.
+
+    Looked for pages that would use ASU DIR (see issue CHS-235) but didn't see any so didn't add hot-fix in push to Live server.
+    Moved hot-fix (see issue CHS-235) to Test server.
+

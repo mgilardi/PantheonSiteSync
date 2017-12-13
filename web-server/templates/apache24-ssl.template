@@ -1,0 +1,30 @@
+
+<VirtualHost *:443>
+  DocumentRoot "/usr/local/var/www/htdocs/<LOCAL_DOMAIN>"
+  ServerName      <LOCAL_DOMAIN>
+  ServerAlias www.<LOCAL_DOMAIN>
+
+  SSLEngine on
+
+  SSLCertificateFile    "/usr/local/etc/apache2/2.4/certs/<LOCAL_DOMAIN>.crt"
+  SSLCertificateKeyFile "/usr/local/etc/apache2/2.4/certs/<LOCAL_DOMAIN>.key"
+
+  <FilesMatch "\.(cgi|shtml|phtml|php)$">
+    SSLOptions +StdEnvVars
+  </FilesMatch>
+  <Directory "/usr/local/opt/httpd24/docs/<LOCAL_DOMAIN>/cgi-bin">
+    SSLOptions +StdEnvVars
+  </Directory>
+
+  BrowserMatch "MSIE [2-5]" \
+           nokeepalive ssl-unclean-shutdown \
+           downgrade-1.0 force-response-1.0
+
+  Options +Indexes -MultiViews +FollowSymLinks -SymLinksIfOwnerMatch
+  IndexOptions FancyIndexing
+
+  TransferLog "<APACHE_LOG_FILES>/<LOCAL_DOMAIN>/access_log_ssl"
+  ErrorLog    "<APACHE_LOG_FILES>/<LOCAL_DOMAIN>/error_log_ssl"
+  CustomLog   "<APACHE_LOG_FILES>/<LOCAL_DOMAIN>/request_log_ssl" \
+               "%t %h %{SSL_PROTOCOL}x %{SSL_CIPHER}x \"%r\" %b"
+</VirtualHost>

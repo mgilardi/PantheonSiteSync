@@ -1,0 +1,23 @@
+#
+# Macros Vhost & VHost_SSL
+# p1 = domain
+# p2 = subpath
+# p3 = prefix for aliased subdomain. Allowed values: www | none
+# p4 = multi-site core domain path. Allowed values: the_url | none
+#
+
+#
+# This will be the default domain
+#
+use Vhost     default.local www none
+use Vhost_SSL default.local www none
+
+#
+# Once this is defined will no longer do default
+# domain vhost format: <VirtualHost _default_:<port>>
+#
+define default_vhost_defined 
+
+use Vhost     pma.local www none
+use Vhost_SSL pma.local www none
+

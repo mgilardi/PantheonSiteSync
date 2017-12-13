@@ -1,0 +1,59 @@
+#!/bin/bash
+
+#
+# USAGE
+#
+#
+# Copy this file to a sibling folder to the automation folder which just above
+# this folder as you, not the root user.
+# Next to go your pantheon dashboard for the project and replace the 4 lines 
+# from that project into the section over-clearly marked "FILL IN THIS SECTION"
+# Once done:
+#   cd to the directory above this called automation
+#   sudo to root user
+#   
+#   type: ./install.sh <PATH TO CONFIG FILE>
+#   
+#         E.g. Given the paths below your line could look like:
+#           ./install.sh ../aipi-dev/config.sh
+#   
+# Sample directory listing:
+#   ├- aipi-dev
+#   ├- asu-biokic-dev
+#   ├- automation
+#   ├- chs2-dev
+#   ├- root-mysql.txt
+#   ├- tools
+#   
+#   Your project will install on your local computer. If you get errors you can
+#   tweak this script to work on your computer and rerun this as many times as 
+#   you like as every step checks whether it has already been done and skips if
+#   it has.
+#
+
+# ----------------------------------------- FILL IN THIS SECTION -----------------------------------------
+#
+# PANTHEON
+#
+
+#
+# These samples show what the above lines should look like when you copy them
+# from the correct place in pantheon.
+#
+#  SAMPLES:
+#    REMOTE_PANTHEON_DASHBOARD_URL="https://dashboard.pantheon.io/sites/9bfd52b1-cc41-45f1-bf55-18abe4d3ad12"
+#    REMOTE_URL=http://dev-asu-biokic.ws.asu.edu/
+#    DRUPAL_GIT_CLONE="git clone ssh://codeserver.dev.9bfd52b1-cc41-45f1-bf55-18abe4d3ad12@codeserver.dev.9bfd52b1-cc41-45f1-bf55-18abe4d3ad12.drush.in:2222/~/repository.git asu-biokic"
+#    REMOTE_DB_LINE="mysql -u pantheon -p5198dd1fc1214e7984e02dcb8939dd5c -h dbserver.dev.9bfd52b1-cc41-45f1-bf55-18abe4d3ad12.drush.in -P 11339 pantheon"
+#
+
+REMOTE_PANTHEON_DASHBOARD_URL=
+
+REMOTE_URL=
+
+DRUPAL_GIT_CLONE=""
+REMOTE_DB_LINE=""
+
+# Optional. Only needed if website is locked.
+REMOTE_LOCKED_USER_USER=
+REMOTE_LOCKED_USER_PSWD=

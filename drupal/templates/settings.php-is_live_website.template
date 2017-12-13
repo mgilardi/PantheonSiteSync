@@ -1,0 +1,28 @@
+
+#
+# True if domain DOES NOT contain:
+#   ^www.dev- ^dev- 
+#   -dev$ -dev. 
+#   .local$
+#
+function is_live_website() {
+  return !preg_match('/^(www\.)?dev-|-dev\.|-dev$|\.local$/', $_SERVER['HTTP_HOST']);
+}
+
+# Force the efficiencies of the performance page on the live site: 
+#     /admin/config/development/performance
+if (! variable_get('initialized_live_website_performance_settings', FALSE) && is_live_website()) {
+  variable_set('cache', TRUE);          # Cache pages for anonymous users
+  variable_set('block_cache', TRUE);    # Comment this out if some blocks have dynamic content
+  variable_set('preprocess_js', TRUE);  # Aggregate
+  variable_set('preprocess_css', TRUE); # Aggregate
+# variable_set('cache_lifetime', 0);    # Minimum cache lifetime.
+  variable_set('page_cache_maximum_age', 3600); # Seconds
+
+  # Once we have set them we don't want to keep doing it so we use this as a
+  # lockout variable to repeating setting the variables.
+  variable_set('initialized_live_website_performance_settings', TRUE);
+}
+else {
+  variable_del('initialized_live_website_performance_settings');
+}

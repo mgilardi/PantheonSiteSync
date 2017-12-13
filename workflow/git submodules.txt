@@ -1,0 +1,12 @@
+Getting an update into a submodule and then into the parent module:
+
+  If "sites" is the submodule:
+    # Update the "sites" submodule
+    cd sites
+    git add .
+    git commit -m "MESSAGE"
+    cd ..
+
+    # "sites" submodule up-to-date, now update your parent module
+    git add sites
+    git commit -m "sites submodule updated"

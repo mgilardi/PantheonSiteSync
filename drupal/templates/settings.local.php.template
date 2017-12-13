@@ -1,0 +1,15 @@
+<?php
+$databases['default']['default'] = array(
+  'driver'    => 'mysql',
+  'database'  => '<DB>',
+  'username'  => '<USER>',
+  'password'  => '<PASS>',
+  'host'      => '<HOST>',
+  'prefix'    => '<PREFIX>',
+);
+
+$conf['file_temporary_path'] = '/tmp';
+#$conf['file_public_path']    = '/sites/default/files';
+#$conf['file_private_path']   = '/sites/default/files/private';
+
+$update_free_access = TRUE;
