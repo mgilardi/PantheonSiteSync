@@ -1,2 +1,97 @@
 # PantheonSiteSync
-Syncing Pantheon sites to a local machine.
+## Description
+Syncing Pantheon sites to a local machine with automation.
+
+## Initializing
+### Root directory
+If you wish to change your scripts' root directory folder name either:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) Change this line in every file it occurs:
+```
+PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=automation
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) Add the line:
+```
+export PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=<YOUR SCRIPT ROOT FOLDER NAME>
+```
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to your's and the root user's .profile file.
+
+You should make ./drupal/data/tokens_to_restore_db empty. Your usage will populate it with your data.
+
+### IDE directory
+This is empty but if you wish to automate some of your ide's setup add the code here and call it from the install.sh file.
+
+## REQUIREMENTS
+### brew
+You will need Homebrew/brew for, well, everything.
+
+### rsync
+rsync must be version 3.1+. It is on brew.
+
+You will need an ssh key for the root user for the rsync operation. You do this with:
+```
+sudo bash -i
+mkdir .ssh
+cd .ssh
+ssh-keygen -t rsa -b 4096
+```
+Copy your new rsa.pub file to Pantheon
+
+## CUSTOMIZATION
+Customize the files in the config dir. to your needs.
+
+### gsed
+You need it, get it from brew.
+
+### tree
+You need it, get it from brew. Alternatively, replace it with the reporting of your liking.
+
+### mysql_config_editor
+If your mysql is older you might not have this, update mysql or alter the code to not need it.
+
+### apache
+This uses apache 2.4 from brew. If you have a different web server write your own scripts for your web server and then include the script in the install.sh file and of course exclude apache. This way we build up a library of web servers and people can just "plug in" the one they want.
+
+Even if you are using apache 2.4 from brew you will most probably have different paths for location of things. To handle this change the paths in: ./web-server/templates/* which you will want to match up with any patch changes you make in ./config/system.sh
+
+### pv
+You need it, get it from brew. Alternatively, replace it with the reporting of your liking.
+
+## Usage
+### ./install.sh
+Put PantheonSiteSync as a sibling folder to your other projects. Perform the following commands:
+```
+cd PantheonSiteSync
+sudo
+./install.sh <folder name for desired project>
+```
+
+### ./drupal/drupal_setup.sh
+Some components (eventually all hopefully) can be run independent of ./install.sh. Primarily these are the DB commands to set and restore user 1 in a drupal DB. You do this by running:
+```
+./drupal/drupal_setup.sh -f <FUNCTION> <PROJECT-QUERY>
+```
+<FUNCTION> is the name of the function to call in drupal_setup.sh. These will almost certainly be one of:
+* set_local_user_one_pass
+* restore_local_user_one_pass
+* set_remote_user_one_pass
+* restore_remote_user_one_pass
+
+<PROJECT-QUERY> is the first few letters of the project's folder name, enough letters to determine which project is best but less will still work, you'll just have to make a decision when prompted with options.
+
+### ./git-merge-from-upstream.sh
+This is not really part of the automation. It's really just a convenience in case you are prone to forget the commands for merging upstream into your local git repo. You can use it with the following commands:
+```
+cd <DRUPAL ROOT DIRECTORY>
+./git-merge-from-upstream.sh
+```
+You can run the script (as we do above) or just paste it's content on the command line.
+
+## workflow dir
+Throw in here anything that helps you with your workflow. This is not part of the automation, just a placeholder for things you may use repeatedly in your workflow.
+
+## remove_cmds.sh
+The file ./remove/remove_cmds.sh is not meant to be run. It is instead a reminder of all the things touched by the install script and you should use it as a guide to everything to check and modify if you wish to remove an install.
+
+## Credits
+Creator/Maintainer: Reg Proctor, r100@regproctor.com
+Maintainer: Michael Gilardi, mgilardi@asu.edu / mdgilardi@gmail.com
