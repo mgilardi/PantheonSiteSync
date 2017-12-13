@@ -3,24 +3,25 @@
 Syncing Pantheon sites to a local machine with automation.
 
 ## Initializing
+### User setup
+Add your user information to PantheonSiteSync/config/user.sh before using.
+
+### Start clean
+Make PantheonSiteSync/drupal/data/tokens_to_restore_db empty. Your usage will populate it with your data.
+
 ### Root directory
-If you wish to change your scripts' root directory folder name either:
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a) Change this line in every file it occurs:
-```
-PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=automation
-```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b) Add the line:
+We are expecting the root directory to be named 'PantheonSiteSync'. If you wish to change your scripts' root directory folder name, add the following line to your's and the root user's .profile file:
 ```
 export PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=<YOUR SCRIPT ROOT FOLDER NAME>
 ```
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;to your's and the root user's .profile file.
-
-You should make ./drupal/data/tokens_to_restore_db empty. Your usage will populate it with your data.
 
 ### IDE directory
-This is empty but if you wish to automate some of your ide's setup add the code here and call it from the install.sh file.
+This is empty, but if you wish to automate some of your IDE's setup, add the code here and call it from the install.sh file.
 
-## REQUIREMENTS
+### Personalization
+Customize the files in the PantheonSiteSync/config directory to your needs.
+
+## Requirements
 ### brew
 You will need Homebrew/brew for, well, everything.
 
@@ -35,9 +36,6 @@ cd .ssh
 ssh-keygen -t rsa -b 4096
 ```
 Copy your new rsa.pub file to Pantheon
-
-## CUSTOMIZATION
-Customize the files in the config dir. to your needs.
 
 ### gsed
 You need it, get it from brew.
@@ -66,7 +64,7 @@ sudo
 ```
 
 ### ./drupal/drupal_setup.sh
-Some components (eventually all hopefully) can be run independent of ./install.sh. Primarily these are the DB commands to set and restore user 1 in a drupal DB. You do this by running:
+Some components (eventually all hopefully) can be run independent of ./install.sh. Primarily these are the DB commands to set and restore user-1 in a Drupal DB. You do this by running:
 ```
 ./drupal/drupal_setup.sh -f <FUNCTION> <PROJECT-QUERY>
 ```

@@ -24,7 +24,7 @@ OPTIND=1                # Not needed with "local OPTIND"
 
 if [ -z "$SCRIPT_ROOT" ]; then
     if [ -z "$PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR" ]; then
-      PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=automation
+      PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=PantheonSiteSync
     fi
     SCRIPT_ROOT=$(realpath "${BASH_SOURCE[0]}"|grep -o "^.*$PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR")
     cd "$SCRIPT_ROOT"
