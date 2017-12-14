@@ -91,7 +91,6 @@ The file PantheonSiteSync/remove/remove_cmds.sh is not meant to be run. It is in
 Throw anything in PantheonSiteSync/workflow that helps you with your overall workflow. This is not part of the automation, just a placeholder for things you may use repeatedly in your workflow.
 
 ### Autonomous scripts
-==================
 Sometimes you may want to perform a single function instead of a full install. To see which functionality you can run autonomously, try:
 ```
 grep 'SCRIPT_ROOT=' -r .
