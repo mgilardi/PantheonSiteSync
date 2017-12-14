@@ -10,7 +10,7 @@ Add your user information to PantheonSiteSync/config/user.sh before using.
 Make PantheonSiteSync/drupal/data/tokens_to_restore_db empty. Your usage will populate it with your data.
 
 ### Root directory
-We are expecting the root directory to be named 'PantheonSiteSync'. If you wish to change your scripts' root directory folder name, add the following line to your's and the root user's .profile file:
+We are expecting the root directory to be named 'PantheonSiteSync'. If you wish to change your scripts' root directory folder name, you can change every instance of 'PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR' to your desired value, or add the following line to your's and the root user's .profile file:
 ```
 export PANTHEON_DOWNLOAD_AUTOMATION_SCRIPT_ROOT_DIR=<YOUR SCRIPT ROOT FOLDER NAME>
 ```
@@ -89,6 +89,27 @@ The file PantheonSiteSync/remove/remove_cmds.sh is not meant to be run. It is in
 
 ### Workflow directory
 Throw anything in PantheonSiteSync/workflow that helps you with your overall workflow. This is not part of the automation, just a placeholder for things you may use repeatedly in your workflow.
+
+### Autonomous scripts
+==================
+Sometimes you may want to perform a single function instead of a full install. To see which functionality you can run autonomously, try:
+```
+grep 'SCRIPT_ROOT=' -r .
+```
+from the root directory. All files pulled up have been setup to run by themselves as well as be called by PantheonSiteSync/install.sh. At the moment, the current scripts are:
+```
+./db/download_remote_db.sh
+./db/local_db_dump.sh
+./db/local_db_import.sh
+./drupal/drupal_setup.sh
+./drupal/rsync_remote_files_dir.sh
+./web-server/apache.sh
+```
+**EXAMPLE:** to update a local database, you might do the following:
+```
+./db/local_db_import.sh ../<project>/sql/<file>       [where "<example>" is a placeholder t o be defined, as seen below]
+./db/local_db_import.sh ../ideaenterprise/sql/local_dev_ideaenterprise_dev_2017-12-13_23.59.15.sql
+```
 
 ## Credits
 * Creator/Maintainer: Reg Proctor, r100@regproctor.com
